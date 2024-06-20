@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { boolean } = require("joi");
 dotenv.config();
 
 const userSchema = new mongoose.Schema({
@@ -10,10 +11,8 @@ const userSchema = new mongoose.Schema({
   mobileNumber: { type: String, required: true },
   dateOfBirth: { type: Date, required: true },
   passwordChangedAt: { type: Date, default: Date.now },
-
+  isVerified:{ type:Boolean, default:false }
 });
-
-
 
 
 userSchema.methods.isPasswordExpired = function () {
